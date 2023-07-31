@@ -1,0 +1,3 @@
+[submodule "Assets/Scripts/Superklub"]
+	path = Assets/Scripts/Superklub
+	url = https://github.com/dondi3go/Superklub.git
