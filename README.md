@@ -12,16 +12,22 @@ As described in the Superklub repository, Superklub needs :
   * Destroy nodes
 * Superklub already supports Unity Serialization (and it is the ugliest part of the code)
 
+## Installation
+
+This project uses **Superklub** as a submodule
+
+Do not forget to run `git submodule update --init --recursive` after cloning.
+
 ## How to run
 
 To illustrate how Superklub behaves in a Unity environement :
-* Run the **supersynk** server (see repo)
-* Run **SuperklubSpinningBlueBox** in the SuperklubMSVSTests repo
+* Run the **supersynk** server (in supersynk repo)
+* Run **SuperklubSpinningBlueBox** project (in the SuperklubMSVSTests repo)
 * Run this project
 
 SuperklubSpinningBlueBox will send data to the supersynk server.
 
-The Unity app will get these data fro the server and display a rotating blue box.
+The Unity app will get these data from the server and display a rotating blue box.
 
 It's not much, but wait to see the coming **SuperklubXR** App.
 
@@ -33,7 +39,6 @@ For the time being, the semantics of the exchanged data is naive :
 * node.Color is ["red", "green", "blue"], again something more interesting can be imagined
 
 ## Todo list
-* The serialization
 * The Unity App is an observer for the time being. It could contribute
   to the scene by moving some local nodes. And then a third app could connect
   and see the 3D objects from the first two clients.
