@@ -17,6 +17,12 @@ public class UnitySuperklub : MonoBehaviour
     /// </summary>
     private SuperklubManager superklubManager = null;
 
+    [SerializeField]
+    private string ServerUrl = "http://127.0.0.1:9999";
+
+    [SerializeField]
+    private string Channel = "default";
+
     /// <summary>
     /// Frequency of requests to the server
     /// </summary>
@@ -37,6 +43,8 @@ public class UnitySuperklub : MonoBehaviour
         var httpClient = new HttpClient();
         var supersynkClient = new SupersynkClient(httpClient);
         superklubManager = new SuperklubManager(supersynkClient);
+        superklubManager.ServerUrl = ServerUrl;
+        superklubManager.Channel = Channel;
 
         StartSuperklubLoop();
     }
