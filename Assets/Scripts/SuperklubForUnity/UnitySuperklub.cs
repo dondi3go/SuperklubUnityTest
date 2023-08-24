@@ -34,6 +34,10 @@ public class UnitySuperklub : MonoBehaviour
     /// </summary>
     private Dictionary<string, SuperklubNode> distantNodes = new Dictionary<string, SuperklubNode>();
 
+    /// <summary>
+    /// 
+    /// </summary>
+    private bool isBeingDestroyed = false;
 
     /// <summary>
     /// 
@@ -99,6 +103,11 @@ public class UnitySuperklub : MonoBehaviour
     /// </summary>
     private void SpawnNode(SuperklubNodeRecord node)
     {
+        if(isBeingDestroyed)
+        {
+            return;
+        }
+
         Debug.Log("Spawning node " + node.Id);
         // Create
         var superklubNode = SuperklubNodeFactory.CreateNode(node);
@@ -113,10 +122,14 @@ public class UnitySuperklub : MonoBehaviour
     /// </summary>
     private void UpdateNode(SuperklubNodeRecord node)
     {
+        if(isBeingDestroyed)
+        {
+            return;
+        }
+
         if (distantNodes.ContainsKey(node.Id))
         {
-            //Debug.Log("Updating node " + node.Id);
-            // Retrieve
+            // Retrieve node
             var superklubNode = distantNodes[node.Id];
             // Update
             superklubNode.UpdateNode(node);
@@ -132,8 +145,25 @@ public class UnitySuperklub : MonoBehaviour
     /// </summary>
     private void DestroyNode(SuperklubNodeRecord node)
     {
+        if(isBeingDestroyed)
+        {
+            return;
+        }
+
         Debug.Log("Destroying node " + node.Id);
-        // TODO
+        if (distantNodes.ContainsKey(node.Id))
+        {
+            // Retrieve node
+            var superklubNode = distantNodes[node.Id];
+            // Remove Key
+            distantNodes.Remove(node.Id);
+            // Destroy
+            Destroy(superklubNode.gameObject);
+        }
+        else
+        {
+            Debug.LogError("No node named " + node.Id);
+        }
     }
 
     /// <summary>
@@ -141,6 +171,8 @@ public class UnitySuperklub : MonoBehaviour
     /// </summary>
     private void OnDestroy()
     {
+        CancelInvoke();
         distantNodes.Clear();
+        isBeingDestroyed = true;
     }
 }

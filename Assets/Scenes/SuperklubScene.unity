@@ -345,4 +345,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a3a252f75adc9f4f81b0937b88af7f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ServerUrl: http://127.0.0.1:5000
+  Channel: spinningBlueBox
   syncFrequency: 10
