@@ -1,6 +1,6 @@
-# SuperklubUnityTest
+# SuperklubUnityTests
 
-A basic test of Superklub in Unity
+Tests for Superklub in Unity 2022.3
 
 Some Unity specifics are not in the Superklub project, this projet provides them.
 
